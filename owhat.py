@@ -5,7 +5,7 @@ import string,json
 
 raiseID = 67655
 
-def getOwhatRankingList(raiseID):
+def getOwhatRankingList(raiseID,page):
     headers = {
         'host':'m.owhat.cn',
         'content-type':'application/x-www-form-urlencoded'
@@ -15,7 +15,7 @@ def getOwhatRankingList(raiseID):
         'cmd_m': 'findrankingbygoodsid',
         'v': '5.5.0',
         'client': '{"platform":"mobile", "version":"5.5.0", "deviceid":"xyz", "channel":"owhat"}',
-        'data': '{ "goodsid":"'+ str(raiseID) +'", "pagenum":1, "pagesize":20 }'
+        'data': '{ "goodsid":"'+ str(raiseID) +'", "pagenum":'+str(page)+', "pagesize":20 }'
     }
 
     url = "https://m.owhat.cn/api?requesttimestap=" + str(int(time.time()*1000))
@@ -42,7 +42,7 @@ def getOwhatSales(raiseID):
         'cmd_m': 'findPricesAndStock',
         'v': '5.5.0',
         'client': '{"platform":"mobile", "version":"5.5.0", "deviceid":"xyz", "channel":"owhat"}',
-        'data': '{ "fk_goods_id":"67360"}'
+        'data': '{ "fk_goods_id":"'+str(raiseID)+'"}'
     }
 
     url = "https://m.owhat.cn/api?requesttimestap=" + str(int(time.time()*1000))
